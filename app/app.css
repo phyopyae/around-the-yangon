@@ -1,0 +1,45 @@
+/* app css stylesheet */
+
+.menu {
+  list-style: none;
+  border-bottom: 0.1em solid black;
+  margin-bottom: 2em;
+  padding: 0 0 0.5em;
+}
+
+.menu:before {
+  content: "[";
+}
+
+.menu:after {
+  content: "]";
+}
+
+.menu > li {
+  display: inline;
+}
+
+.menu > li + li:before {
+  content: "|";
+  padding-right: 0.3em;
+}
+
+#mapid { height: 800px; }
+
+table
+{
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-collapse: collapse;
+}
+table th
+{
+    background-color: #F7F7F7;
+    color: #333;
+    font-weight: bold;
+}
+table th, table td
+{
+    padding: 5px;
+    border: 1px solid #ccc;
+}
