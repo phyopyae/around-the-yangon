@@ -14,8 +14,19 @@ angular.module('myApp.map', ['ngRoute'])
     $scope.layer
     $scope.busMap = {};
     $scope.busList = [];
+    $scope.selectedBusStops = [];
 
     $scope.getInit = function () {
+
+      $http.get("data/bus_stops.json")
+      .then(function (response) {
+        if (response) {
+          var data = response.data[0];
+          $scope.busStopMap = data;
+        }
+      }, function (error) {
+      });
+
       $http.get("data/route_config.json")
       .then(function (response) {
         if (response) {
@@ -50,17 +61,32 @@ angular.module('myApp.map', ['ngRoute'])
         if ($scope.polyline) {
           $scope.polyline.remove();
         }
+
+        if ($scope.selectedBusStops) {
+          $scope.selectedBusStops.forEach(function (element) {
+            element.remove();
+          })
+        }
         
         if (response) {
           var routeLatLngList = [];
           var routeCoordinatesList = response.data.shape.geometry.coordinates;
           routeCoordinatesList.forEach(function (element) {
-
             var latlng = [];
             latlng.push(element[1]);
             latlng.push(element[0]);
             routeLatLngList.push(latlng);
           });
+
+          var busStopList = response.data.stops;
+          busStopList.forEach(function (element) {
+            var busStopId = element + "";
+            var busStopDetail = $scope.busStopMap[element];
+            var busStopMarker = L.marker([Number(busStopDetail.lat), Number(busStopDetail.lng)]).addTo($scope.mymap);
+            busStopMarker.bindPopup('<p>' + busStopDetail.name_mm + ',<br> ' + busStopDetail.road_mm + ',<br> ' + busStopDetail.twsp_mm + '</p>');
+            $scope.selectedBusStops.push(busStopMarker);
+          });
+
           // create a red polyline from an array of LatLng points
           var latlngs = [];
           latlngs.push(routeLatLngList);
