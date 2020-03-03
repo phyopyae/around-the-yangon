@@ -40,7 +40,6 @@
     "prestart": "npm install",
     //"start": "http-server -a localhost -p 8000 -c-1 ./app",
 	"start": "node server.js",
-	"build": "ng build",
     "pretest": "npm install",
     "test": "karma start karma.conf.js",
     "test-single-run": "npm test -- --single-run",
