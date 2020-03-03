@@ -73,8 +73,8 @@ angular.module('myApp.map', ['ngRoute'])
           var routeCoordinatesList = response.data.shape.geometry.coordinates;
           routeCoordinatesList.forEach(function (element) {
             var latlng = [];
-            latlng.push(element[1]);
-            latlng.push(element[0]);
+            latlng.push(element[1]); // latitude
+            latlng.push(element[0]); // longitude
             routeLatLngList.push(latlng);
           });
 
