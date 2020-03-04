@@ -6,24 +6,22 @@
   "repository": "https://github.com/angular/angular-seed",
   "license": "MIT",
   "dependencies": {
-    "@angular/cli": "1.4.9",
-    "@angular/compiler-cli": "^4.4.6",
     "angular": "^1.7.9",
     "angular-loader": "^1.7.5",
     "angular-route": "^1.7.5",
+    "bootstrap": "3.3.x",
     "express": "^4.17.1",
     "html5-boilerplate": "0.0.1",
+    "jquery": "^3.4.1",
     "leaflet": "^1.6.0",
     "leaflet-routing-machine": "^3.2.12",
     "leaflet-sidebar-v2": "^3.2.2",
     "path": "^0.12.7"
   },
   "devDependencies": {
-    "@angular/cli": "^9.0.4",
-    "@angular/compiler-cli": "^9.0.4",
     "angular-mocks": "^1.7.5",
     "cpx": "^1.5.0",
-    "http-server": "^0.11.1",
+    "http-server": "^0.12.1",
     "jasmine-core": "^3.3.0",
     "karma": "^3.1.1",
     "karma-chrome-launcher": "^2.2.0",
@@ -32,21 +30,18 @@
     "protractor": "^5.4.1"
   },
   "scripts": {
-    "heroku-postbuild": "ng build --prod",
     "postinstall": "npm run copy-libs",
     "update-deps": "npm update",
     "postupdate-deps": "npm run copy-libs",
-    "copy-libs": "cpx \"node_modules/{angular,angular-*,html5-boilerplate/dist}/**/*\" app/lib -C",
+    "copy-libs": "cpx \"node_modules/{angular,angular-*,bootstrap/dist,jquery/dist}/**/*\" app/lib -C",
     "prestart": "npm install",
-    "start": "http-server -a localhost -p 8000 -c-1 ./app",
+    "start": "http-server ./app -a localhost -p 8000 -c-1",
     "pretest": "npm install",
     "test": "karma start karma.conf.js",
     "test-single-run": "npm test -- --single-run",
     "preupdate-webdriver": "npm install",
-    "//": "Do not install the Firefox driver to work around https://github.com/angular/webdriver-manager/issues/303.",
-    "update-webdriver": "webdriver-manager update --gecko false",
+    "update-webdriver": "webdriver-manager update",
     "preprotractor": "npm run update-webdriver",
-    "protractor": "protractor e2e-tests/protractor.conf.js",
-    "update-index-async": "node --eval \"var fs=require('fs'),indexFile='app/index-async.html',loaderFile='app/lib/angular-loader/angular-loader.min.js',loaderText=fs.readFileSync(loaderFile,'utf-8').split(/sourceMappingURL=angular-loader.min.js.map/).join('sourceMappingURL=lib/angular-loader/angular-loader.min.js.map'),indexText=fs.readFileSync(indexFile,'utf-8').split(/\\/\\/@@NG_LOADER_START@@[\\s\\S]*\\/\\/@@NG_LOADER_END@@/).join('//@@NG_LOADER_START@@\\n'+loaderText+'    //@@NG_LOADER_END@@');fs.writeFileSync(indexFile,indexText);\""
+    "protractor": "protractor e2e-tests/protractor.conf.js"
   }
 }
