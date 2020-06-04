@@ -12,7 +12,7 @@
     "bootstrap": "3.4.x",
     "express": "^4.17.1",
     "html5-boilerplate": "0.0.1",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "leaflet": "^1.6.0",
     "leaflet-routing-machine": "^3.2.12",
     "leaflet-sidebar-v2": "^3.2.2",
