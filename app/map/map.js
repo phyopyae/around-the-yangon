@@ -14,6 +14,7 @@ angular.module('myApp.map', ['ngRoute'])
     $scope.layer
     $scope.busMap = {};
     $scope.busList = [];
+    $scope.busStopList = [];
     $scope.selectedBusStops = [];
 
     $scope.getInit = function () {
@@ -67,6 +68,8 @@ angular.module('myApp.map', ['ngRoute'])
             element.remove();
           })
         }
+
+        $scope.busStopList = [];
         
         if (response) {
           var routeLatLngList = [];
@@ -78,6 +81,7 @@ angular.module('myApp.map', ['ngRoute'])
             routeLatLngList.push(latlng);
           });
 
+          var tempList = [];
           var busStopList = response.data.stops;
           busStopList.forEach(function (element) {
             var busStopId = element + "";
@@ -85,7 +89,17 @@ angular.module('myApp.map', ['ngRoute'])
             var busStopMarker = L.marker([Number(busStopDetail.lat), Number(busStopDetail.lng)]).addTo($scope.mymap);
             busStopMarker.bindPopup('<p>' + busStopDetail.name_mm + ',<br> ' + busStopDetail.road_mm + ',<br> ' + busStopDetail.twsp_mm + '</p>');
             $scope.selectedBusStops.push(busStopMarker);
+            
+            $scope.busStopList.push(busStopDetail);
           });
+
+          $scope.busStopList.forEach((item, index) => {
+            if(tempList.findIndex(first => first.name_en == item.name_en) === -1) {
+              tempList.push(item);
+            }
+          });
+
+          $scope.busStopList = tempList;
 
           // create a red polyline from an array of LatLng points
           var latlngs = [];
