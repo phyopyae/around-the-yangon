@@ -3,7 +3,7 @@ YBS Bus route information for Yangon
 
 ## How to run
 1. Clone or Download the repository.
-2. Open Terminal and go to direcory of repository.
+2. Open Terminal and go to directory of repository.
 3. Run npm start.
 
 ## Source
